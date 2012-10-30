@@ -12,4 +12,5 @@ import com.google.inject.ImplementedBy;
 public interface TestObject {
   String getTestString();
   String generatedMethod();
+  boolean isTestAfterInject();
 }

@@ -20,6 +20,7 @@ public class GinJitsuTest implements EntryPoint {
     assert obj.generatedMethod() != null;
     assert obj.generatedMethod().equals("test");
 
+    assert obj.isTestAfterInject();
     Window.alert("test passed");
   }
 }

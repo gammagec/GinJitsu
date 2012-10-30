@@ -8,4 +8,5 @@
     <generate-with class="com.chrisgammage.ginjitsu.server.JitsuGenerator">
         <when-type-assignable class="com.chrisgammage.ginjitsu.client.JitsuInjector"/>
     </generate-with>
+
 </module>

@@ -1,5 +1,7 @@
 package com.chrisgammage.ginjitsu_test.client;
 
+import com.chrisgammage.ginjitsu.client.AfterInject;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -13,6 +15,20 @@ public abstract class TestObjectImpl implements TestObject {
 
   @Inject @Named("testString")
   private String testString;
+
+  boolean testAfterInject;
+
+  @AfterInject
+  void afterInject() {
+    assert testString != null;
+    assert testString.equals("test");
+    testAfterInject = true;
+  }
+
+  @Override
+  public boolean isTestAfterInject() {
+    return testAfterInject;
+  }
 
   @Override
   public String getTestString() {

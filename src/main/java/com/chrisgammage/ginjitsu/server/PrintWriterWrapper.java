@@ -47,6 +47,7 @@ public class PrintWriterWrapper extends PrintWriter {
   @Override
   public void write(String s) {
     if(lookingForReturn && s.contains("return result")) {
+      lookingForReturn = false;
       JClassType clazz = generatorContext.getTypeOracle().findType(returnType);
       for(JMethod method : clazz.getOverridableMethods()) {
         if(method.isAnnotationPresent(AfterInject.class)) {
@@ -55,12 +56,25 @@ public class PrintWriterWrapper extends PrintWriter {
       }
       super.write(s);
       return;
-    } else if(s.contains("GWT.create(")) {
-      int startInd = s.indexOf("GWT.create(") + 11;
-      int endInd = s.indexOf(".class);");
-      String className = s.substring(startInd, endInd);
+    } else if(s.contains("GWT.create(") || s.contains("return new")) {
+
+      boolean isNew = s.contains("return new");
+      String className;
+      if(!isNew) {
+        int startInd = s.indexOf("GWT.create(") + 11;
+        int endInd = s.indexOf(".class);");
+        className = s.substring(startInd, endInd);
+      } else {
+        int startInd = s.indexOf("return new") + 11;
+        int endInd = s.indexOf("(");
+        className = s.substring(startInd, endInd);
+      }
       lookingForReturn = true;
       returnType = className;
+      if(className.endsWith("Generated")) {
+        super.write(s);
+        return;
+      }
       if(ginExtensions != null) {
         JClassType clazz = generatorContext.getTypeOracle().findType(className);
         try {

@@ -1,5 +1,6 @@
 package com.chrisgammage.ginjitsu_test.server;
 
+import com.chrisgammage.ginjitsu.server.GeneratorHelper;
 import com.google.gwt.core.ext.Generator;
 import com.google.gwt.core.ext.GeneratorContext;
 import com.google.gwt.core.ext.TreeLogger;
@@ -30,6 +31,7 @@ public class TestGenerator extends Generator {
       if(src == null) {
         return typeName + "Generated";
       }
+      GeneratorHelper.writeConstructor(src, classType);
 
       src.println("@Override");
       src.println("public String generatedMethod() { return \"test\"; }");

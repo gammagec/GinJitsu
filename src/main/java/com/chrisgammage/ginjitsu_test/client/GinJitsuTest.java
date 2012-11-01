@@ -21,6 +21,14 @@ public class GinJitsuTest implements EntryPoint {
     assert obj.generatedMethod().equals("test");
 
     assert obj.isTestAfterInject();
+
+    AssistedObjImpl assObj = injector.factory().getAssistedObj("test");
+    assert assObj.getText() != null;
+    assert assObj.getText().endsWith("test");
+    assert assObj.isAfterInjected();
+
+    assert injector.testSingleton().isAfterInjected();
+
     Window.alert("test passed");
   }
 }

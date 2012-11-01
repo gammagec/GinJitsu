@@ -13,9 +13,13 @@ import com.google.gwt.inject.client.GinModules;
  * Time: 3:04 PM
  */
 @GinExtensions({ @GinExtension(clazz = TestObjectImpl.class,
-                               generator = TestGenerator.class) })
+                               generator = TestGenerator.class),
+                 @GinExtension(clazz = AssistedObjImpl.class,
+                               generator = TestGenerator.class)})
 @GinModules(TestModule.class)
 public interface TestInjector extends JitsuInjector {
 
   TestObject testObject();
+  TestFactory factory();
+  TestSingleton testSingleton();
 }

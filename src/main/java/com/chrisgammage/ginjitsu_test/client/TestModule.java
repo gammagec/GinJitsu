@@ -1,6 +1,7 @@
 package com.chrisgammage.ginjitsu_test.client;
 
 import com.google.gwt.inject.client.AbstractGinModule;
+import com.google.gwt.inject.client.assistedinject.GinFactoryModuleBuilder;
 
 import static com.google.inject.name.Names.named;
 
@@ -14,5 +15,9 @@ public class TestModule extends AbstractGinModule {
   @Override
   protected void configure() {
     bindConstant().annotatedWith(named("testString")).to("test");
+
+    install(new GinFactoryModuleBuilder()
+            .implement(AssistedObj.class, AssistedObjImpl.class)
+            .build(TestFactory.class));
   }
 }

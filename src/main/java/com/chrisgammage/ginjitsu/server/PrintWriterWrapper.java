@@ -31,6 +31,10 @@ public class PrintWriterWrapper extends PrintWriter {
   private final GeneratorContext generatorContext;
   private final HashMap<String, String> generatedClasses = new HashMap<String, String>();
 
+  static {
+    LOG.setLevel(Level.WARNING);
+  }
+
   public PrintWriterWrapper(PrintWriter writer,
                             TreeLogger treeLogger,
                             GeneratorContext generatorContext,
@@ -78,11 +82,10 @@ public class PrintWriterWrapper extends PrintWriter {
     JClassType clazzType = generatorContext.getTypeOracle().findType(clazz);
     if(clazzType != null) {
       Map<String, JMethod> methods = new HashMap<String, JMethod>();
-      for(JClassType c : clazzType.getFlattenedSupertypeHierarchy()) {
-        for(JMethod method : c.getMethods()) {
-          if(method.isAnnotationPresent(AfterInject.class)) {
-            methods.put(method.getName(), method);
-          }
+
+      for(JMethod method : GeneratorHelper.getAllMethods(clazzType)) {
+        if(method.isAnnotationPresent(AfterInject.class)) {
+          methods.put(method.getName(), method);
         }
       }
       for(JMethod method : methods.values()) {

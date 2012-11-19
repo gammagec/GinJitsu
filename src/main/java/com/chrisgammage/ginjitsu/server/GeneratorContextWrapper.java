@@ -28,7 +28,7 @@ public class GeneratorContextWrapper implements GeneratorContext {
   static final private Logger LOG = Logger.getLogger(GeneratorContextWrapper.class.getName());
 
   static {
-    //LOG.setLevel(Level.WARNING);
+    LOG.setLevel(Level.WARNING);
   }
 
   private final GinExtension[] ginExtensions;

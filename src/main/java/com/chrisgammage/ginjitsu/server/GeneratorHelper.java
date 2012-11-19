@@ -3,8 +3,12 @@ package com.chrisgammage.ginjitsu.server;
 import com.google.gwt.core.ext.UnableToCompleteException;
 import com.google.gwt.core.ext.typeinfo.JClassType;
 import com.google.gwt.core.ext.typeinfo.JConstructor;
+import com.google.gwt.core.ext.typeinfo.JMethod;
 import com.google.gwt.core.ext.typeinfo.JParameter;
 import com.google.gwt.user.rebind.SourceWriter;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.
@@ -50,5 +54,15 @@ public class GeneratorHelper {
       throw new UnableToCompleteException();
     }
     src.println("}");
+  }
+
+  public static Set<JMethod> getAllMethods(JClassType classType) {
+    Set<JMethod> methods = new HashSet<JMethod>();
+    for(JClassType c : classType.getFlattenedSupertypeHierarchy()) {
+      for(JMethod method : c.getMethods()) {
+        methods.add(method);
+      }
+    }
+    return methods;
   }
 }

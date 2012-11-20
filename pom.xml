@@ -33,6 +33,20 @@
         </plugins>
     </build>
 
+    <distributionManagement>
+        <repository>
+            <id>bioimagene-releases</id>
+            <name>bioimagene-releases</name>
+            <url>dav:http://hobbit:92/artifactory/libs-releases-local</url>
+        </repository>
+        <snapshotRepository>
+            <id>bioimagene-snapshots</id>
+            <uniqueVersion>false</uniqueVersion>
+            <name>bioimagene-snapshots</name>
+            <url>dav:http://hobbit:92/artifactory/libs-snapshots-local</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <dependencies>
         <dependency>
             <groupId>com.google.gwt</groupId>

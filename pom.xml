@@ -44,13 +44,13 @@
         <repository>
             <id>bioimagene-releases</id>
             <name>bioimagene-releases</name>
-            <url>dav:http://hobbit:92/artifactory/libs-releases-local</url>
+            <url>dav:http://hobbit:92/artifactory/libs-release-local</url>
         </repository>
         <snapshotRepository>
             <id>bioimagene-snapshots</id>
             <uniqueVersion>false</uniqueVersion>
             <name>bioimagene-snapshots</name>
-            <url>dav:http://hobbit:92/artifactory/libs-snapshots-local</url>
+            <url>dav:http://hobbit:92/artifactory/libs-snapshot-local</url>
         </snapshotRepository>
     </distributionManagement>
 

@@ -30,28 +30,15 @@
                     </execution>
                 </executions>
             </plugin>
-        </plugins>
-        <extensions>
-            <extension>
-                <groupId>org.apache.maven.wagon</groupId>
-                <artifactId>wagon-webdav</artifactId>
-                <version>1.0-beta-2</version>
-            </extension>
-        </extensions>
+        </plugins>        
     </build>
 
     <distributionManagement>
         <repository>
-            <id>bioimagene-releases</id>
-            <name>bioimagene-releases</name>
-            <url>dav:http://hobbit:92/artifactory/libs-release-local</url>
+            <id>bintray-gammagec-maven-GinJitsu</id>
+            <name>gammagec-maven-GinJitsu</name>
+            <url>https://api.bintray.com/maven/gammagec/maven/GinJitsu</url>
         </repository>
-        <snapshotRepository>
-            <id>bioimagene-snapshots</id>
-            <uniqueVersion>false</uniqueVersion>
-            <name>bioimagene-snapshots</name>
-            <url>dav:http://hobbit:92/artifactory/libs-snapshot-local</url>
-        </snapshotRepository>
     </distributionManagement>
 
     <dependencies>
